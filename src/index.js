@@ -321,9 +321,9 @@ class WebSocketAsPromised {
     this._tryUnpack(data);
   }
 
-  _tryUnpack(data) {
+  async _tryUnpack(data) {
     if (this._options.unpackMessage) {
-      data = this._options.unpackMessage(data);
+      data = await this._options.unpackMessage(data);
       if (data !== undefined) {
         this._onUnpackedMessage.dispatchAsync(data);
         this._tryHandleResponse(data);
